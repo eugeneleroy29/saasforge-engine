@@ -17,15 +17,15 @@ export function MetricCards() {
       {/* 1. Monthly Token Meter */}
       <div className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between text-zinc-400 mb-2">
-          <span className="text-xs font-semibold uppercase tracking-wider">Token Usage</span>
+          <span className="text-xs font-bold uppercase tracking-wider">Token Usage (Monthly)</span>
           <Gauge className="w-4 h-4 text-indigo-400" />
         </div>
         <div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-white">
+            <span className="text-2xl font-bold text-white font-mono">
               {formatNumber(state.tokensUsedThisMonth)}
             </span>
-            <span className="text-xs text-zinc-400 font-medium">
+            <span className="text-xs text-zinc-400 font-medium font-mono">
               / {formatNumber(activeTierConfig.monthlyTokens)}
             </span>
           </div>
@@ -44,7 +44,7 @@ export function MetricCards() {
           </div>
           <div className="flex justify-between items-center text-[11px] text-zinc-400 mt-2">
             <span>{tokenUsagePercent}% consumed</span>
-            <span className="font-semibold text-zinc-300">{formatNumber(remainingTokens)} remaining</span>
+            <span className="font-semibold text-zinc-300 font-mono">{formatNumber(remainingTokens)} remaining</span>
           </div>
         </div>
       </div>
@@ -52,17 +52,17 @@ export function MetricCards() {
       {/* 2. Active Subscription Tier */}
       <div className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between text-zinc-400 mb-2">
-          <span className="text-xs font-semibold uppercase tracking-wider">Subscription Tier</span>
+          <span className="text-xs font-bold uppercase tracking-wider">Active Subscription</span>
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
         </div>
         <div>
           <div className="text-2xl font-bold text-white capitalize">{activeTierConfig.name}</div>
           <p className="text-xs text-zinc-400 mt-1">
             Max {activeTierConfig.maxRequestsPerMin} req/min &bull;{' '}
-            {activeTierConfig.hasApiAccess ? 'API Keys Enabled' : 'Browser Only'}
+            {activeTierConfig.hasApiAccess ? 'API Keys Active' : 'Web Sandbox Only'}
           </p>
         </div>
-        <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md w-fit">
+        <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md w-fit">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Active Account Status
         </div>
@@ -71,28 +71,28 @@ export function MetricCards() {
       {/* 3. Total Requests Executed */}
       <div className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between text-zinc-400 mb-2">
-          <span className="text-xs font-semibold uppercase tracking-wider">Total AI Requests</span>
+          <span className="text-xs font-bold uppercase tracking-wider">Total AI Queries</span>
           <Activity className="w-4 h-4 text-cyan-400" />
         </div>
         <div>
-          <div className="text-2xl font-bold text-white">{state.totalRequestsMade}</div>
+          <div className="text-2xl font-bold text-white font-mono">{state.totalRequestsMade}</div>
           <p className="text-xs text-zinc-400 mt-1">
-            Est. Cost: <span className="text-zinc-200 font-semibold">{formatCurrency(totalCostUsd)}</span>
+            Est. Cost: <span className="text-zinc-200 font-semibold font-mono">{formatCurrency(totalCostUsd)}</span>
           </p>
         </div>
         <div className="mt-3 text-[11px] text-zinc-400">
-          Telemetry tracked across {state.activityLogs.length} events
+          Telemetry logged across {state.activityLogs.length} events
         </div>
       </div>
 
       {/* 4. Active API Keys */}
       <div className="rounded-2xl bg-zinc-900/60 border border-zinc-800 p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between text-zinc-400 mb-2">
-          <span className="text-xs font-semibold uppercase tracking-wider">Developer Keys</span>
+          <span className="text-xs font-bold uppercase tracking-wider">Developer API Keys</span>
           <Key className="w-4 h-4 text-amber-400" />
         </div>
         <div>
-          <div className="text-2xl font-bold text-white">{activeKeysCount} Active</div>
+          <div className="text-2xl font-bold text-white font-mono">{activeKeysCount} Active</div>
           <p className="text-xs text-zinc-400 mt-1">
             {state.currentTier === 'free' ? 'Paywalled on Free tier' : 'Sub-500ms Edge Gateway'}
           </p>
